@@ -214,6 +214,58 @@ namespace BaseWebApi
             }
         }
 
+        public bool GetSync(string command, out int t, out string outMessage)
+        {
+            outMessage = string.Empty;
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(m_baseUrl);
+                client.Timeout = new TimeSpan(0, 0, 5);
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if (m_token != null)
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_token.access_token);
+
+                try
+                {
+
+                    var response = client.GetAsync($"{command}");
+                    var result = response.Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        string json = "";
+                        using (HttpContent content = result.Content)
+                        {
+                            json = content.ReadAsStringAsync().Result;
+                            t = JsonConvert.DeserializeObject<int>(json);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        string json = "";
+                        using (HttpContent content = result.Content)
+                        {
+                            json = content.ReadAsStringAsync().Result;
+                            HarmoniServiceResponse r = JsonConvert.DeserializeObject<HarmoniServiceResponse>(json);
+                            outMessage = r.msg;
+                            t = 0;
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    outMessage = ex.Message;
+                    t = 0;
+                    return false;
+                }
+            }
+        }
+
         public bool GetSync(string command, out string t, out string outMessage) 
         {
             outMessage = string.Empty;

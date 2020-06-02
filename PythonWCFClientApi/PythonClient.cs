@@ -36,6 +36,11 @@ namespace PythonWCFClientApi
             }
             return b;
         }
+        public bool KillPythonScript(out int numKilled, out string outMessage)
+        {           
+            bool b = m_http.GetSync("KillPythonScript", out numKilled, out outMessage);            
+            return b;
+        }
         public bool RunPyhton(bool openPythonConsoleWindow, string pyhonScriptCode, out string outMessage)
         {
              RunPythonCmd pcmd = new RunPythonCmd

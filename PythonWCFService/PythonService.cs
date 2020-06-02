@@ -44,6 +44,19 @@ namespace PythonWCFHttpService
             return new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString()));
         }
 
+        Stream PrepareResponse(int num)
+        {
+            var s = JsonSerializer.Create();
+            var sb = new StringBuilder();
+            using (var sw = new StringWriter(sb))
+            {
+                s.Serialize(sw, num);
+            }
+
+            WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
+            return new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString()));
+        }
+
         Stream PrepareResponseOk()
         {
             JObject jsonObject = new JObject();
@@ -153,26 +166,26 @@ namespace PythonWCFHttpService
             }
         }        
          
-        public Stream DeleteUser(int id)
-        {             
-            //return PrepareResponseOk();                     
-            return PrepareResponseMsg("E");            
+        public Stream KillPythonScript()
+        {
+            m_pythonRunner.KillPython(out int numKilled);
+            return PrepareResponse(numKilled);            
         }
 
         PYTHON_STATUS m_pythonStatus = PYTHON_STATUS.NOT_STARTED;
 
         public Stream GetPythonStatus()
-        {
+        {           
             return PrepareResponseMsg((int)m_pythonStatus, true);
         }
 
+        PythonRun m_pythonRunner = new PythonRun();
         public Stream RunPythonClient(RunPythonCmd pcmd)
         {
 
             m_pythonStatus = PYTHON_STATUS.STARTED;
             Console.WriteLine("RunPythonClient {0}  {1}", pcmd.openPythonConsoleWindow, pcmd.pyhonScriptCode);
-            PythonRun r = new PythonRun();
-            r.RunPythonClient(pcmd.openPythonConsoleWindow, pcmd.pyhonScriptCode, out string outMessage, (cb)=>
+            m_pythonRunner.RunPythonClient(pcmd.openPythonConsoleWindow, pcmd.pyhonScriptCode, out string outMessage, (cb)=>
             {
                 if (cb == false)
                     m_pythonStatus = PYTHON_STATUS.STOP_WITH_FAILURE;

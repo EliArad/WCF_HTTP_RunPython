@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtIpAddress = new System.Windows.Forms.TextBox();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.btnRunPython = new System.Windows.Forms.Button();
             this.txtPythonScript = new System.Windows.Forms.TextBox();
@@ -36,19 +35,12 @@
             this.txtVersion = new System.Windows.Forms.TextBox();
             this.btnSet = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtIpAddress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtIpAddress
-            // 
-            this.txtIpAddress.Location = new System.Drawing.Point(69, 45);
-            this.txtIpAddress.Name = "txtIpAddress";
-            this.txtIpAddress.Size = new System.Drawing.Size(92, 20);
-            this.txtIpAddress.TabIndex = 0;
-            this.txtIpAddress.Text = "192.168.21.31";
-            this.txtIpAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPort
             // 
@@ -105,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtVersion);
@@ -117,6 +110,16 @@
             this.groupBox1.Size = new System.Drawing.Size(703, 146);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(588, 108);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Kill Python Script";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblStatus
             // 
@@ -135,6 +138,15 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Status:";
+            // 
+            // txtIpAddress
+            // 
+            this.txtIpAddress.Location = new System.Drawing.Point(69, 45);
+            this.txtIpAddress.Name = "txtIpAddress";
+            this.txtIpAddress.Size = new System.Drawing.Size(92, 20);
+            this.txtIpAddress.TabIndex = 0;
+            this.txtIpAddress.Text = "192.168.21.31";
+            this.txtIpAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -156,8 +168,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtIpAddress;
         private System.Windows.Forms.TextBox txtPort;
         private System.Windows.Forms.Button btnRunPython;
         private System.Windows.Forms.TextBox txtPythonScript;
@@ -167,6 +177,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtIpAddress;
     }
 }
 

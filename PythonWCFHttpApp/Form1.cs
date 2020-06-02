@@ -61,28 +61,33 @@ namespace PythonWCFHttpApp
         {
             while (m_running)
             {
-                if (m_client.GetPythonStatus(out PYTHON_STATUS pstatus, out string outMessage) == false)
-                {
-                    lblStatus.Text = "error";
-                }
-                else
-                {
-                    lblStatus.Text = pstatus.ToString();
-                }
+                ShowStatus();
                 m_ev.WaitOne(5000);
+            }
+        }
+        void ShowStatus()
+        {
+            if (m_client.GetPythonStatus(out PYTHON_STATUS pstatus, out string outMessage) == false)
+            {
+                lblStatus.Text = "error";
+            }
+            else
+            {
+                lblStatus.Text = pstatus.ToString();
             }
         }
 
         private void btnRunPython_Click(object sender, EventArgs e)
         {
-            btnRunPython.ForeColor = Color.Black;
+            btnRunPython.ForeColor = Color.Black;            
             if (m_client.RunPyhton(true, txtPythonScript.Text, out string outMessage) == false)
             {
                 btnRunPython.ForeColor = Color.Red;
             }
             else
             {
-                btnRunPython.ForeColor = Color.Green;                
+                btnRunPython.ForeColor = Color.Green;
+                ShowStatus();
             }
         }
 
@@ -94,6 +99,19 @@ namespace PythonWCFHttpApp
             Properties.Settings.Default.Port = int.Parse(txtPort.Text);
             Properties.Settings.Default.PythonScript = txtPythonScript.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (m_client.KillPythonScript(out int numKilled, out string outMessage) == false)
+            {
+                MessageBox.Show("Failed to kill");
+            }
+            else
+            {
+                ShowStatus();
+                MessageBox.Show("Killed: " + numKilled.ToString());
+            }
         }
     }
 }

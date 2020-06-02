@@ -74,6 +74,20 @@ namespace PythonWCFHttpService
             }
             return true;  
         }
+
+        public void KillPython(out int numKilled)
+        {
+            Process[] p = null;
+            p = Process.GetProcessesByName("python");
+            
+            for (int i = 0; i < p.Length; i++)
+            {
+                p[i].Kill();
+                i++;
+            }
+            numKilled = p.Length;
+        }
+
         void WaitForFinished(Action<bool> cb)
         {
             Process[] p = null;

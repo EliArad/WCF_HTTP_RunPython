@@ -16,7 +16,8 @@ namespace PythonWCFHttpService
          
         [OperationContract]
         [WebGet(), CorsEnabled]
-        Stream DeleteUser(int id);
+        Stream KillPythonScript();
+         
 
 
         [OperationContract]
