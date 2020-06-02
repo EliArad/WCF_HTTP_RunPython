@@ -46,5 +46,17 @@ namespace PythonWCFHttpApp.Properties {
                 this["Port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PythonScript {
+            get {
+                return ((string)(this["PythonScript"]));
+            }
+            set {
+                this["PythonScript"] = value;
+            }
+        }
     }
 }

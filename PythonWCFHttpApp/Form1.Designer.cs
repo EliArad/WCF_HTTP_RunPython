@@ -36,8 +36,8 @@
             this.txtVersion = new System.Windows.Forms.TextBox();
             this.btnSet = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +75,6 @@
             this.txtPythonScript.Name = "txtPythonScript";
             this.txtPythonScript.Size = new System.Drawing.Size(438, 20);
             this.txtPythonScript.TabIndex = 3;
-            this.txtPythonScript.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnGetVersion
             // 
@@ -119,15 +118,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(454, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Status:";
-            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
@@ -136,6 +126,15 @@
             this.lblStatus.Size = new System.Drawing.Size(16, 13);
             this.lblStatus.TabIndex = 7;
             this.lblStatus.Text = "---";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(454, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Status:";
             // 
             // Form1
             // 

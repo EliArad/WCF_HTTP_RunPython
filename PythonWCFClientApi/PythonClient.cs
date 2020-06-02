@@ -22,11 +22,12 @@ namespace PythonWCFClientApi
 
         public bool GetPythonStatus(out PYTHON_STATUS pstatus, out string outMessage)
         {
-            bool b = m_http.GetSync("GetPythonStatus", out pstatus, out outMessage);
+            string status;
+            bool b = m_http.GetSync("GetPythonStatus", out status, out outMessage);
             if (b == true)
             {
                 outMessage = string.Empty;
-                JObject j = JObject.Parse(pstatus.ToString());
+                JObject j = JObject.Parse(status);
                 pstatus = (PYTHON_STATUS)int.Parse(j["Result"].ToString());
             }
             else
