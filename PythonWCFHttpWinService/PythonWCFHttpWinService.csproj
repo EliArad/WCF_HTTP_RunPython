@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +57,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PythonWCFCommon\PythonWCFCommon.csproj">
+      <Project>{2E20CDB0-7650-4DC5-BB0D-5D4A42504720}</Project>
+      <Name>PythonWCFCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PythonWCFService\PythonWCFHttpService.csproj">
       <Project>{aec8679b-9c2d-4c9f-94a8-b6ef9376f542}</Project>
       <Name>PythonWCFHttpService</Name>
